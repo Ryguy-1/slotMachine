@@ -1,8 +1,8 @@
 package slotMachine;
 
-public class slotRunner {
+public class SlotRunner {
 	public static void main(String[] args) {
-		slotMachineWindow window = new slotMachineWindow();
-
+		SlotMachineWindow window = new SlotMachineWindow();
+		
 	}
 }
