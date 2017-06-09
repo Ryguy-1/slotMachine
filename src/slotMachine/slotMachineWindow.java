@@ -14,6 +14,7 @@ public class SlotMachineWindow {
 		frame.setVisible(true);
 		frame.setSize(width, height);
 		frame.add(panel);
+		frame.setTitle("Slot Machine");
 
 	}
 

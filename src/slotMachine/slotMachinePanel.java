@@ -1,5 +1,6 @@
 package slotMachine;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -25,6 +26,7 @@ public class SlotMachinePanel extends JPanel implements ActionListener {
 	JButton reset = new JButton();
 	JButton betOne = new JButton();
 	String restart = "";
+	final int WINNING_MULTIPLIER = 7;
 
 	SlotMachinePanel() {
 
@@ -47,68 +49,23 @@ public class SlotMachinePanel extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
-		
-		
-		
+
 		if (e.getSource() == spin) {
 
-			
-			
-				real.spin();
-				credits -= bet;
-			
-
-			if (real.isWinner()) {
-
-				updateWinnings();
-
-			} else if (real.isWinner() == false) {
-
-				paid = 0;
-
-				if (credits <= 0) {
-					updateDisplay();
-					restart = JOptionPane.showInputDialog("Would you like to restart: ");
-
-					if (restart.equalsIgnoreCase("Yes")) {
-
-						credits = 50;
-						bet = 0;
-						paid = 0;
-
-					} else if (restart.equalsIgnoreCase("No")) {
-
-						System.exit(0);
-
-					}
-
-				}
-				
-			}
+			spinAction();
 
 		} else if (e.getSource() == betOne) {
 
-			if (credits==0) {
+			betOneAction();
 
-				JOptionPane.showMessageDialog(null, "You don't have that much money!");
-				
-				}else {
-					bet += 1;
-					credits -= 1;
-				}
+		} else if (e.getSource() == reset) {
 
-			} else if (e.getSource() == reset) {
+			resetAction();
 
-				credits += bet;
+		}
+		updateDisplay();
 
-				bet = 0;
-
-			}
-			updateDisplay();
-
-		
-}
+	}
 
 	private void makeButtons() {
 
@@ -141,10 +98,11 @@ public class SlotMachinePanel extends JPanel implements ActionListener {
 
 	private void updateWinnings() {
 
-		paid = bet * 7;
+		paid = bet * WINNING_MULTIPLIER;
 
 		credits += paid;
 
+		creditDisplay.setForeground(new Color(50, 200, 50));
 	}
 
 	private void updateDisplay() {
@@ -157,5 +115,61 @@ public class SlotMachinePanel extends JPanel implements ActionListener {
 
 		repaint();
 	}
+	private void spinAction(){
+		
+		real.spin();
+		credits -= bet;
 
+		if (real.isWinner()) {
+
+			updateWinnings();
+
+		} else if (real.isWinner() == false) {
+
+			paid = 0;
+
+			creditDisplay.setForeground(Color.RED);
+
+			if (credits <= 0) {
+				updateDisplay();
+				restart = JOptionPane.showInputDialog("Would you like to restart: ");
+
+				if (restart.equalsIgnoreCase("Yes")) {
+
+					credits = 50;
+					bet = 0;
+					paid = 0;
+
+				} else if (restart.equalsIgnoreCase("No")) {
+
+					System.exit(0);
+
+				}
+
+			}
+	
+		
+	}
+
+}
+	private void betOneAction(){
+		
+		if (credits == 0) {
+
+			JOptionPane.showMessageDialog(null, "You don't have that much money!");
+
+		} else {
+			bet += 1;
+			credits -= 1;
+		}
+		
+	}
+	private void resetAction(){
+		
+		credits += bet;
+
+		bet = 0;
+		
+	}
+	
 }
