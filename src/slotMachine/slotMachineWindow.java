@@ -2,15 +2,15 @@ package slotMachine;
 
 import javax.swing.JFrame;
 
-public class SlotMachineWindow {
+public class slotMachineWindow {
 
 	JFrame frame = new JFrame();
-	SlotMachinePanel panel = new SlotMachinePanel();
+	slotMachinePanel panel = new slotMachinePanel();
 
 	int width = 800;
 	int height = 600;
 
-	SlotMachineWindow() {
+	slotMachineWindow() {
 		frame.setVisible(true);
 		frame.setSize(width, height);
 		frame.add(panel);

@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class SlotMachinePanel extends JPanel implements ActionListener {
+public class slotMachinePanel extends JPanel implements ActionListener {
 
 	JButton spin = new JButton();
 	DisplayReal real = new DisplayReal();
@@ -28,7 +28,7 @@ public class SlotMachinePanel extends JPanel implements ActionListener {
 	String restart = "";
 	final int WINNING_MULTIPLIER = 7;
 
-	SlotMachinePanel() {
+	slotMachinePanel() {
 
 		setLayout(null);
 
@@ -140,7 +140,7 @@ public class SlotMachinePanel extends JPanel implements ActionListener {
 					bet = 0;
 					paid = 0;
 
-				} else if (restart.equalsIgnoreCase("No")) {
+				} else{
 
 					System.exit(0);
 
